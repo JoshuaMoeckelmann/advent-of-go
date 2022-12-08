@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 
-	"github.com/JoshuaMoeckelmann/AOC/common"
+	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
 func SolveProblem2(scanner *bufio.Scanner, lineCount int) {

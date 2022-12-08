@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/JoshuaMoeckelmann/AOC/common"
+	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
 const (

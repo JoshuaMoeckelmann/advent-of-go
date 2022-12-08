@@ -5,15 +5,15 @@ import (
 	"flag"
 	"os"
 
-	"github.com/JoshuaMoeckelmann/AOC/common"
-	"github.com/JoshuaMoeckelmann/AOC/day01"
-	"github.com/JoshuaMoeckelmann/AOC/day02"
-	"github.com/JoshuaMoeckelmann/AOC/day03"
-	"github.com/JoshuaMoeckelmann/AOC/day04"
-	"github.com/JoshuaMoeckelmann/AOC/day05"
-	"github.com/JoshuaMoeckelmann/AOC/day06"
-	"github.com/JoshuaMoeckelmann/AOC/day07"
-	"github.com/JoshuaMoeckelmann/AOC/day08"
+	"github.com/JoshuaMoeckelmann/advent-of-go/common"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day01"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day02"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day03"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day04"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day05"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day06"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day07"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day08"
 )
 
 func main() {

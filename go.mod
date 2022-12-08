@@ -1,4 +1,4 @@
-module github.com/JoshuaMoeckelmann/AOC
+module github.com/JoshuaMoeckelmann/advent-of-go
 
 go 1.19
 
