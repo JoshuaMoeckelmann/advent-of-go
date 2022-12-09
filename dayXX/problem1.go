@@ -1,20 +1,14 @@
 package dayXX
 
 import (
-	"bufio"
 	"fmt"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem1(lines []string) {
 	resultingValue := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
-
+	for _, currentLine := range lines {
 		fmt.Printf("Current value is %s :)\n", currentLine)
 	}
 
 	fmt.Printf("Solution to 1 is: Max value is %d :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
 }

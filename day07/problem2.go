@@ -1,20 +1,17 @@
 package day07
 
 import (
-	"bufio"
 	"fmt"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem2(lines []string) {
 	// skip first line
-	scanner.Scan()
+	i := 0
 	root := Node{
 		name:     "/",
 		children: make([]*Node, 0),
 	}
-	parseTree(scanner, &root)
+	parseTree(&i, lines, &root)
 
 	resultingValue := 0
 	parseTreeDFS(&resultingValue, &root)
@@ -25,7 +22,6 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 	findDirsBiggerThanSpaceToFree(&minSize, &root, spaceToFree)
 
 	fmt.Printf("Min value to delete is %d :)\n", minSize)
-	common.CheckScannerForError(scanner)
 }
 
 func findDirsBiggerThanSpaceToFree(minSize *int, node *Node, spaceToFree int) {

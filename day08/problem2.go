@@ -1,18 +1,16 @@
 package day08
 
 import (
-	"bufio"
 	"fmt"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
-	grid := make([][]int, lineCount)
+func SolveProblem2(lines []string) {
+	grid := make([][]int, len(lines))
 	height := 0
 	lineLength := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+	for _, currentLine := range lines {
 		lineLength = len(currentLine)
 		grid[height] = make([]int, lineLength)
 		for x, v := range currentLine {
@@ -32,7 +30,6 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 	}
 
 	fmt.Printf("Solution to 2 is: %d trees are visible :)\n", maxVisibleTrees)
-	common.CheckScannerForError(scanner)
 }
 
 func visibleTreesTop(grid [][]int, x_init, y_init int) int {

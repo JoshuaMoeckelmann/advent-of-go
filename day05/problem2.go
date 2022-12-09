@@ -1,16 +1,14 @@
 package day05
 
 import (
-	"bufio"
 	"fmt"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
-	stacks := createStacks(scanner)
-	for scanner.Scan() {
-		amount, from, to := parseInput(scanner.Text())
+func SolveProblem2(lines []string) {
+	i := 0
+	stacks := createStacks(&i, lines)
+	for i < len(lines) {
+		amount, from, to := parseInput(lines[i])
 
 		s := make([]string, 0)
 		for i := 0; i < amount; i++ {
@@ -22,6 +20,7 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 		for i := len(s) - 1; i >= 0; i-- {
 			stacks[to-1] = stacks[to-1].Push(s[i])
 		}
+		i++
 	}
 
 	resultingValue := ""
@@ -29,5 +28,4 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 		resultingValue += sta.Peek()
 	}
 	fmt.Printf("Solution to 2 is: %s :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
 }

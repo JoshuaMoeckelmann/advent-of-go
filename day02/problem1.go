@@ -1,11 +1,8 @@
 package day02
 
 import (
-	"bufio"
 	"fmt"
 	"strings"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
 const (
@@ -18,10 +15,13 @@ const (
 	Scissors = "Z"
 )
 
-func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem1(lines []string) {
 	score := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+	i := 0
+	for i < len(lines) {
+		currentLine := lines[i]
+		i++
+
 		split := strings.Split(currentLine, " ")
 		oponent := split[0]
 		me := split[1]
@@ -30,7 +30,6 @@ func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
 	}
 
 	fmt.Printf("Solution to 1 is: A score of %d :)\n", score)
-	common.CheckScannerForError(scanner)
 }
 
 func calculateTotalOfTop3(oponent, me string, score *int) {

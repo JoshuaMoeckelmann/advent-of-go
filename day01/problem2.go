@@ -1,18 +1,19 @@
 package day01
 
 import (
-	"bufio"
 	"fmt"
 	"sort"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem2(lines []string) {
 	values := make([]int, 0)
 	currentValue := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+	i := 0
+	for i < len(lines) {
+		currentLine := lines[i]
+		i++
 		if currentLine == "" {
 			values = append(values, currentValue)
 			currentValue = 0
@@ -22,7 +23,6 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 	}
 
 	fmt.Printf("Solution to 2 is: %d calories :)\n", calculateTotalOfTop3(values))
-	common.CheckScannerForError(scanner)
 }
 
 func calculateTotalOfTop3(values []int) int {

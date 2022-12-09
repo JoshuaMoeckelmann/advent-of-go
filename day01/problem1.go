@@ -1,22 +1,22 @@
 package day01
 
 import (
-	"bufio"
 	"fmt"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem1(lines []string) {
 	maxValue := 0
 	currentValue := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+	i := 0
+	for i < len(lines) {
+		currentLine := lines[i]
+		i++
 		performActionOnEachLine(&maxValue, &currentValue, currentLine)
 	}
 
 	fmt.Printf("Solution to 1 is: %d calories :)\n", maxValue)
-	common.CheckScannerForError(scanner)
 }
 
 func performActionOnEachLine(maxValue, currentValue *int, currentLine string) {

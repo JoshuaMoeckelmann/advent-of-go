@@ -1,16 +1,10 @@
 package day06
 
 import (
-	"bufio"
 	"fmt"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
-	scanner.Scan()
-	text := scanner.Text()
-	resultingValue := searchForMarker(14, text)
+func SolveProblem2(lines []string) {
+	resultingValue := searchForMarker(14, lines[0])
 	fmt.Printf("Solution to 2 is: Marker starts at %d :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
 }

@@ -1,26 +1,23 @@
 package day07
 
 import (
-	"bufio"
 	"fmt"
 	"strings"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
-	// skip first line
-	scanner.Scan()
+func SolveProblem1(lines []string) {
+	i := 0
 	root := Node{
 		name:     "/",
 		children: make([]*Node, 0),
 	}
-	parseTree(scanner, &root)
+	parseTree(&i, lines, &root)
 
 	resultingValue := 0
 	parseTreeDFS(&resultingValue, &root)
 	fmt.Printf("Max value is %d :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
 }
 
 func parseTreeDFS(wholeValue *int, node *Node) {
@@ -37,15 +34,16 @@ func parseTreeDFS(wholeValue *int, node *Node) {
 	}
 }
 
-func parseTree(scanner *bufio.Scanner, node *Node) *Node {
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+func parseTree(i *int, lines []string, node *Node) *Node {
+	for *i+1 < len(lines) {
+		*i++
+		currentLine := lines[*i]
 		if currentLine == "$ ls" {
-			readDirectory(scanner, node)
-			currentLine = scanner.Text()
-			if currentLine == "" {
+			readDirectory(i, lines, node)
+			if *i+1 >= len(lines) {
 				break
 			}
+			currentLine = lines[*i]
 		}
 
 		if currentLine == "$ cd .." {
@@ -54,7 +52,7 @@ func parseTree(scanner *bufio.Scanner, node *Node) *Node {
 			dirName := strings.Split(currentLine, " cd ")[1]
 			for _, v := range node.children {
 				if v.name == dirName {
-					parseTree(scanner, v)
+					parseTree(i, lines, v)
 					break
 				}
 			}
@@ -63,9 +61,10 @@ func parseTree(scanner *bufio.Scanner, node *Node) *Node {
 	return node
 }
 
-func readDirectory(scanner *bufio.Scanner, node *Node) {
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+func readDirectory(i *int, lines []string, node *Node) {
+	for *i+1 < len(lines) {
+		*i++
+		currentLine := lines[*i]
 		if string(currentLine[0]) == "$" {
 			break
 		}

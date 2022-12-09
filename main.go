@@ -32,29 +32,29 @@ func main() {
 func switchDays(day *int, scanner *bufio.Scanner, fileRowLength int, fileToClose *os.File, lines []string) {
 	switch *day {
 	case 1:
-		day01.SolveProblem1(scanner, fileRowLength)
-		day01.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day01.SolveProblem1(lines)
+		day01.SolveProblem2(lines)
 	case 2:
-		day02.SolveProblem1(scanner, fileRowLength)
-		day02.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day02.SolveProblem1(lines)
+		day02.SolveProblem2(lines)
 	case 3:
-		day03.SolveProblem1(scanner, fileRowLength)
-		day03.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day03.SolveProblem1(lines)
+		day03.SolveProblem2(lines)
 	case 4:
-		day04.SolveProblem1(scanner, fileRowLength)
-		day04.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day04.SolveProblem1(lines)
+		day04.SolveProblem2(lines)
 	case 5:
-		day05.SolveProblem1(scanner, fileRowLength)
-		day05.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day05.SolveProblem1(lines)
+		day05.SolveProblem2(lines)
 	case 6:
-		day06.SolveProblem1(scanner, fileRowLength)
-		day06.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day06.SolveProblem1(lines)
+		day06.SolveProblem2(lines)
 	case 7:
-		day07.SolveProblem1(scanner, fileRowLength)
-		day07.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day07.SolveProblem1(lines)
+		day07.SolveProblem2(lines)
 	case 8:
-		day08.SolveProblem1(scanner, fileRowLength)
-		day08.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+		day08.SolveProblem1(lines)
+		day08.SolveProblem2(lines)
 	case 9:
 		day09.SolveProblem1(lines)
 		day09.SolveProblem2(lines)

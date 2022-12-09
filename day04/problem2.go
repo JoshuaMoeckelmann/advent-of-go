@@ -1,19 +1,18 @@
 package day04
 
 import (
-	"bufio"
 	"fmt"
 	"strings"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem2(lines []string) {
 	resultingValue := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
-		lineSplit := strings.Split(currentLine, ",")
+	i := 0
+	for i < len(lines) {
+		currentLine := lines[i]
+		i++
 
+		lineSplit := strings.Split(currentLine, ",")
 		leftLeft, leftRight := divideStringFurther(lineSplit[0])
 		rightLeft, rightRight := divideStringFurther(lineSplit[1])
 
@@ -23,5 +22,4 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 	}
 
 	fmt.Printf("Solution to 2 is: %d :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
 }

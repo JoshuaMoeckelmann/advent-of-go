@@ -1,24 +1,18 @@
 package day03
 
 import (
-	"bufio"
 	"fmt"
 	"strings"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem2(lines []string) {
 	resultingValue := 0
-	firstPart := ""
-	secondPart := ""
-	thirdPart := ""
-	for scanner.Scan() {
-		firstPart = scanner.Text()
-		scanner.Scan()
-		secondPart = scanner.Text()
-		scanner.Scan()
-		thirdPart = scanner.Text()
+	i := 2
+	for i < len(lines) {
+		firstPart := lines[i-2]
+		secondPart := lines[i-1]
+		thirdPart := lines[i]
+		i += 3
 
 		for _, v := range firstPart {
 			stringV := string(v)
@@ -28,15 +22,7 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 				break
 			}
 		}
-		resetValues(&firstPart, &secondPart, &thirdPart)
 	}
 
 	fmt.Printf("Solution to 2 is: %d :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
-}
-
-func resetValues(string1 *string, string2 *string, string3 *string) {
-	*string1 = ""
-	*string2 = ""
-	*string3 = ""
 }

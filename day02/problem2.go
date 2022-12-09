@@ -1,17 +1,17 @@
 package day02
 
 import (
-	"bufio"
 	"fmt"
 	"strings"
-
-	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
+func SolveProblem2(lines []string) {
 	score := 0
-	for scanner.Scan() {
-		currentLine := scanner.Text()
+	i := 0
+	for i < len(lines) {
+		currentLine := lines[i]
+		i++
+
 		split := strings.Split(currentLine, " ")
 		oponent := split[0]
 		me := split[1]
@@ -22,7 +22,6 @@ func SolveProblem2(scanner *bufio.Scanner, lineCount int) {
 	}
 
 	fmt.Printf("Solution to 2 is: A score of %d :)\n", score)
-	common.CheckScannerForError(scanner)
 }
 
 func calculateMe(oponent, me string) string {

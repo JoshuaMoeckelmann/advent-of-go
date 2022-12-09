@@ -1,23 +1,24 @@
 package day05
 
 import (
-	"bufio"
 	"fmt"
 	"strings"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 )
 
-func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
-	stacks := createStacks(scanner)
-	for scanner.Scan() {
-		amount, from, to := parseInput(scanner.Text())
+func SolveProblem1(lines []string) {
+	i := 0
+	stacks := createStacks(&i, lines)
+	for i < len(lines) {
+		amount, from, to := parseInput(lines[i])
 
 		for i := 0; i < amount; i++ {
 			v := ""
 			stacks[from-1], v = stacks[from-1].Pop()
 			stacks[to-1] = stacks[to-1].Push(v)
 		}
+		i++
 	}
 
 	resultingValue := ""
@@ -25,25 +26,15 @@ func SolveProblem1(scanner *bufio.Scanner, lineCount int) {
 		resultingValue += sta.Peek()
 	}
 	fmt.Printf("Solution to 1 is: %s :)\n", resultingValue)
-	common.CheckScannerForError(scanner)
 }
 
-func createStacks(scanner *bufio.Scanner) []stack {
+func createStacks(i *int, lines []string) []stack {
 	// TODO make generic
 	inputLength := 8
 	stackLength := 9
 	stacks := make([]stack, stackLength)
-	i := 0
-	for scanner.Scan() {
-		i++
-		if i > inputLength {
-			// read next two lines, so that parsing works further on
-			scanner.Text()
-			scanner.Scan()
-			scanner.Text()
-			break
-		}
-		currentLine := scanner.Text()
+	for *i < inputLength {
+		currentLine := lines[*i]
 
 		for i := 0; i < stackLength; i++ {
 			currentChar := string(currentLine[1+4*i])
@@ -51,7 +42,11 @@ func createStacks(scanner *bufio.Scanner) []stack {
 				stacks[i] = stacks[i].InvertedAndWrongPush(currentChar)
 			}
 		}
+		*i++
 	}
+
+	// read next two lines, so that parsing works further on
+	*i += 2
 	return stacks
 }
 
