@@ -14,6 +14,7 @@ import (
 	"github.com/JoshuaMoeckelmann/advent-of-go/day06"
 	"github.com/JoshuaMoeckelmann/advent-of-go/day07"
 	"github.com/JoshuaMoeckelmann/advent-of-go/day08"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day09"
 )
 
 func main() {
@@ -22,13 +23,13 @@ func main() {
 	local := flag.Bool("local", false, "Use local input file")
 	flag.Parse()
 
-	scanner, fileRowLength, fileToClose := parseLocalFlag(local, token, day)
+	scanner, fileRowLength, fileToClose, lines := parseLocalFlag(local, token, day)
 	defer fileToClose.Close()
 
-	switchDays(day, scanner, fileRowLength, fileToClose)
+	switchDays(day, scanner, fileRowLength, fileToClose, lines)
 }
 
-func switchDays(day *int, scanner *bufio.Scanner, fileRowLength int, fileToClose *os.File) {
+func switchDays(day *int, scanner *bufio.Scanner, fileRowLength int, fileToClose *os.File, lines []string) {
 	switch *day {
 	case 1:
 		day01.SolveProblem1(scanner, fileRowLength)
@@ -54,10 +55,13 @@ func switchDays(day *int, scanner *bufio.Scanner, fileRowLength int, fileToClose
 	case 8:
 		day08.SolveProblem1(scanner, fileRowLength)
 		day08.SolveProblem2(common.CreateNewScanner(fileToClose), fileRowLength)
+	case 9:
+		day09.SolveProblem1(lines)
+		day09.SolveProblem2(lines)
 	}
 }
 
-func parseLocalFlag(local *bool, token *string, day *int) (*bufio.Scanner, int, *os.File) {
+func parseLocalFlag(local *bool, token *string, day *int) (*bufio.Scanner, int, *os.File, []string) {
 	if *local {
 		return common.LoadLocalFile()
 	}

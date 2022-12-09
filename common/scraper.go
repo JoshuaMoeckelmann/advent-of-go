@@ -15,6 +15,7 @@ type inputData struct {
 }
 
 func scrapeInput(inputs inputData) *os.File {
+	log.Default().Printf("Downloading input for day %d...\n", inputs.day)
 	// Create the file
 	file, err := ioutil.TempFile("", fmt.Sprintf("AOC-day-%d-", inputs.day))
 	if err != nil {
@@ -41,6 +42,7 @@ func scrapeInput(inputs inputData) *os.File {
 	if _, err := io.Copy(file, resp.Body); err != nil {
 		log.Fatal(err)
 	}
+	log.Default().Println("Successfully download!")
 
 	return file
 }
