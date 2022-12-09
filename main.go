@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 	"github.com/JoshuaMoeckelmann/advent-of-go/day01"
@@ -55,6 +56,8 @@ func switchDays(day *int, lines []string) {
 	case 9:
 		day09.SolveProblem1(lines)
 		day09.SolveProblem2(lines)
+	default:
+		panic(fmt.Sprintf("Day %d sadly not implemented :(", *day))
 	}
 }
 
