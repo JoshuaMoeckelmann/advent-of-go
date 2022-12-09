@@ -5,36 +5,24 @@ import (
 	"io"
 	"log"
 	"os"
-
-	"github.com/hyrmn/lc/pkg/lc"
 )
 
-func PrepareFile(token string, day int) (*bufio.Scanner, int, *os.File, []string) {
+func PrepareFile(token string, day int) []string {
 	input := inputData{
 		token: token,
 		day:   day,
 	}
 	file := scrapeInput(input)
-
-	// TODO remove
-	resetFile(file)
-	lineCount, _ := lc.CountLines(bufio.NewReader(file))
-	resetFile(file)
-	scanner := bufio.NewScanner(file)
-
-	return scanner, lineCount, file, readWholeFile(CreateNewScanner(file))
+	return readWholeFile(createNewScanner(file))
 }
 
-func LoadLocalFile() (*bufio.Scanner, int, *os.File, []string) {
+func LoadLocalFile() []string {
 	file, err := os.Open("input.txt")
 	handleError(err)
-
-	resetFile(file)
-	lineCount, _ := lc.CountLines(bufio.NewReader(file))
-	return CreateNewScanner(file), lineCount, file, readWholeFile(CreateNewScanner(file))
+	return readWholeFile(createNewScanner(file))
 }
 
-func CreateNewScanner(file *os.File) *bufio.Scanner {
+func createNewScanner(file *os.File) *bufio.Scanner {
 	resetFile(file)
 	return bufio.NewScanner(file)
 }

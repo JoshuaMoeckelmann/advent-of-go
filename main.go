@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"flag"
-	"os"
 
 	"github.com/JoshuaMoeckelmann/advent-of-go/common"
 	"github.com/JoshuaMoeckelmann/advent-of-go/day01"
@@ -23,13 +21,11 @@ func main() {
 	local := flag.Bool("local", false, "Use local input file")
 	flag.Parse()
 
-	scanner, fileRowLength, fileToClose, lines := parseLocalFlag(local, token, day)
-	defer fileToClose.Close()
-
-	switchDays(day, scanner, fileRowLength, fileToClose, lines)
+	lines := parseLocalFlag(local, token, day)
+	switchDays(day, lines)
 }
 
-func switchDays(day *int, scanner *bufio.Scanner, fileRowLength int, fileToClose *os.File, lines []string) {
+func switchDays(day *int, lines []string) {
 	switch *day {
 	case 1:
 		day01.SolveProblem1(lines)
@@ -61,7 +57,7 @@ func switchDays(day *int, scanner *bufio.Scanner, fileRowLength int, fileToClose
 	}
 }
 
-func parseLocalFlag(local *bool, token *string, day *int) (*bufio.Scanner, int, *os.File, []string) {
+func parseLocalFlag(local *bool, token *string, day *int) []string {
 	if *local {
 		return common.LoadLocalFile()
 	}
