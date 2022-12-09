@@ -7,19 +7,20 @@ import (
 	"os"
 )
 
-func PrepareFile(token string, day int) []string {
+func PrepareFile(token string, day int, purgeCachedFile bool) []string {
 	input := inputData{
-		token: token,
-		day:   day,
+		token:           token,
+		day:             day,
+		purgeCachedFile: purgeCachedFile,
 	}
 	file := scrapeInput(input)
-	return readWholeFile(createNewScanner(file))
+	return readWholeFile(file)
 }
 
 func LoadLocalFile() []string {
 	file, err := os.Open("input.txt")
 	handleError(err)
-	return readWholeFile(createNewScanner(file))
+	return readWholeFile(file)
 }
 
 func createNewScanner(file *os.File) *bufio.Scanner {
@@ -27,7 +28,8 @@ func createNewScanner(file *os.File) *bufio.Scanner {
 	return bufio.NewScanner(file)
 }
 
-func readWholeFile(scanner *bufio.Scanner) []string {
+func readWholeFile(file *os.File) []string {
+	scanner := createNewScanner(file)
 	allLines := make([]string, 0)
 	for scanner.Scan() {
 		allLines = append(allLines, scanner.Text())

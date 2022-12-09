@@ -19,9 +19,10 @@ func main() {
 	token := flag.String("token", "", "Token to request the AOC input")
 	day := flag.Int("day", 1, "day to run the AOC of")
 	local := flag.Bool("local", false, "Use local input file")
+	purgeCachedFile := flag.Bool("purgeCachedFile", false, "Remove cached input file and force a redownload")
 	flag.Parse()
 
-	lines := parseLocalFlag(local, token, day)
+	lines := parseLocalFlag(local, token, day, purgeCachedFile)
 	switchDays(day, lines)
 }
 
@@ -57,10 +58,10 @@ func switchDays(day *int, lines []string) {
 	}
 }
 
-func parseLocalFlag(local *bool, token *string, day *int) []string {
+func parseLocalFlag(local *bool, token *string, day *int, purgeCachedFile *bool) []string {
 	if *local {
 		return common.LoadLocalFile()
 	}
 
-	return common.PrepareFile(*token, *day)
+	return common.PrepareFile(*token, *day, *purgeCachedFile)
 }
