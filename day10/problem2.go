@@ -35,9 +35,9 @@ func SolveProblem2(lines []string) {
 func printCycle(cycle, x int, resultingValue *int) {
 	restOfCycle := cycle % 40
 	if restOfCycle >= x && restOfCycle < x+3 {
-		fmt.Print("#")
+		fmt.Print("🎅")
 	} else {
-		fmt.Print(".")
+		fmt.Print("🎄")
 	}
 
 	if restOfCycle == 0 {

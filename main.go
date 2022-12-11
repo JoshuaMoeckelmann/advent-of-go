@@ -15,6 +15,7 @@ import (
 	"github.com/JoshuaMoeckelmann/advent-of-go/day08"
 	"github.com/JoshuaMoeckelmann/advent-of-go/day09"
 	"github.com/JoshuaMoeckelmann/advent-of-go/day10"
+	"github.com/JoshuaMoeckelmann/advent-of-go/day11"
 )
 
 func main() {
@@ -60,6 +61,9 @@ func switchDays(day *int, lines []string) {
 	case 10:
 		day10.SolveProblem1(lines)
 		day10.SolveProblem2(lines)
+	case 11:
+		day11.SolveProblem1(lines)
+		day11.SolveProblem2(lines)
 	default:
 		panic(fmt.Sprintf("Day %d sadly not implemented :(", *day))
 	}
